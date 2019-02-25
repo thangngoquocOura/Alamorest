@@ -42,11 +42,11 @@ struct JSONPlaceholderAPI {
     }
     
     func posts() -> Promise<[Post]> {
-        return server.json(Request(path: "posts", method: .get))
+        return server.json(path: "posts", method: .get)
     }
     
     func post(id: Int) -> Promise<Post> {
-        return server.json(Request(path: "posts/\(id)", method: .get))
+        return server.json(path: "posts/\(id)", method: .get)
     }
     
     func createPost(title: String, body: String, userId: Int) -> Promise<Post> {
@@ -56,7 +56,7 @@ struct JSONPlaceholderAPI {
             let userId: Int
         }
         let object = Payload(title: title, body: body, userId: userId)
-        return server.json(JSONRequest(object: object, path: "posts", method: .post))
+        return server.json(object: object, path: "posts", method: .post)
     }
     
 }

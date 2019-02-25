@@ -51,7 +51,7 @@ struct ChuckNorrisAPI {
     typealias Categories = [String]
     
     func categories() -> Promise<Categories> {
-        return server.json(Request(path: "jokes/categories", method: .get))
+        return server.json(path: "jokes/categories", method: .get)
     }
     
     struct SearchResults: Decodable {

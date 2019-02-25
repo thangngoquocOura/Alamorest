@@ -36,7 +36,7 @@ public struct RestLogger {
         }
     }
     
-    public var level: Level = .verbose
+    public var level: Level = .debug
     
     public typealias Message = (message: String, level: Level, file: String, line: Int, function: String)
     

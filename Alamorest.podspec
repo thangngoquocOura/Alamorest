@@ -15,6 +15,12 @@ Pod::Spec.new do |spec|
   spec.dependency 'Alamofire', '~> 4.8.1'
   spec.dependency 'PromisesSwift', '~> 1.2.6'
 
+  spec.default_subspec = 'Lite'
+
+  spec.subspec 'Lite' do |lite|
+    # Minimal implementation without additional dependencies.
+  end
+
   spec.subspec 'Protobuf' do |protobuf|
     protobuf.dependency 'SwiftProtobuf', '~> 1.3.1'
   end
