@@ -24,9 +24,7 @@
 
 import Foundation
 
-public class RestLogger {
-    
-    public static let shared = RestLogger()
+public struct RestLogger {
     
     public enum Level: Int, Comparable {
         case error, debug, verbose
@@ -36,21 +34,21 @@ public class RestLogger {
         }
     }
     
-    public var level: Level = .debug
+    public static var level: Level = .debug
     
     public typealias Message = (message: String, level: Level, file: String, line: Int, function: String)
     
-    public var onPrint: ((Message) -> Void)? = {
+    public static var onPrint: ((Message) -> Void)? = {
         Swift.print($0.message)
     }
     
     // MARK: Internal
     
     static func print(_ message: @autoclosure () -> (String), level: Level, file: String = #file, line: Int = #line, function: String = #function) {
-        if level > RestLogger.shared.level {
+        if level > RestLogger.level {
             return
         }
-        RestLogger.shared.onPrint?(Message(message(), level, file, line, function))
+        RestLogger.onPrint?(Message(message(), level, file, line, function))
     }
     
 }

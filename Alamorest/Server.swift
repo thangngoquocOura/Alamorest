@@ -235,7 +235,7 @@ private func printResponse(_ response: DefaultDataResponse, error: Error?) {
 }
 
 private func printHeaders(_ headers: [AnyHashable: Any]) {
-    if RestLogger.shared.level < .verbose {
+    if RestLogger.level < .verbose {
         return
     }
     if let data = try? JSONSerialization.data(withJSONObject: headers, options: .prettyPrinted), let string = String(data: data, encoding: .utf8) {
@@ -246,7 +246,7 @@ private func printHeaders(_ headers: [AnyHashable: Any]) {
 }
 
 private func printData(_ data: Data) {
-    if RestLogger.shared.level < .verbose {
+    if RestLogger.level < .verbose {
         return
     }
     var string = "\n.data\n"

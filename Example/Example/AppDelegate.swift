@@ -33,8 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        jsonPlaceholder.createPost(title: "noom", body: "bodyyy", userId: 50)
-
         return true
     }
     
