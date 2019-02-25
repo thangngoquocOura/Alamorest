@@ -1,0 +1,68 @@
+//
+//  ChuckNorrisAPI.swift
+//
+//  Copyright (c) 2019 Antti Laitala (https://github.com/anlaital/Alamorest/)
+//
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
+//
+
+import Foundation
+import Alamorest
+import Promises
+
+struct ChuckNorrisAPI {
+    
+    let server: Server
+    
+    init(baseURL: String) {
+        server = Server(baseURL: URL(string: baseURL)!)
+    }
+    
+    struct Joke: Decodable {
+        let id: String
+        let iconUrl: URL
+        let value: String
+        let url: URL
+        let category: [String]?
+    }
+    
+    func randomJoke(category: String?) -> Promise<Joke> {
+        let request = Request(path: "jokes/random", method: .get)
+        request.parameters["category"] = category
+        return server.json(request)
+    }
+    
+    typealias Categories = [String]
+    
+    func categories() -> Promise<Categories> {
+        return server.json(Request(path: "jokes/categories", method: .get))
+    }
+    
+    struct SearchResults: Decodable {
+        let total: Int
+        let result: [Joke]
+    }
+    
+    func search(text: String) -> Promise<SearchResults> {
+        let request = Request(path: "jokes/search", method: .get)
+        request.parameters["query"] = text
+        return server.json(request)
+    }
+    
+}
