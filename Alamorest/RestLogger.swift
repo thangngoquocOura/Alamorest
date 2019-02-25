@@ -24,7 +24,7 @@
 
 import Foundation
 
-public struct RestLogger {
+public class RestLogger {
     
     public static let shared = RestLogger()
     

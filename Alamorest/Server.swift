@@ -143,7 +143,7 @@ open class Server {
             let urlRequest = try request.createURLRequest(baseURL: baseURL, headers: headers)
             printRequest(urlRequest, error: nil)
             
-            let dataRequest = sessionManager.request(urlRequest).validate().response {
+            sessionManager.request(urlRequest).validate().response {
                 self.processResponse($0, request: request, promise: promise)
             }
         } catch {
@@ -159,7 +159,7 @@ open class Server {
             let urlRequest = try request.createURLRequest(baseURL: baseURL, headers: headers)
             printRequest(urlRequest, error: nil)
             
-            let dataRequest = sessionManager.request(urlRequest).validate().response {
+            sessionManager.request(urlRequest).validate().response {
                 self.processResponse($0, decoder: decoder, request: request, promise: promise)
             }
         } catch {
