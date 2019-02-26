@@ -134,17 +134,26 @@ open class Server {
     public func submit<R: Request, D: ResponseDecoder>(_ request: R, decoder: D) -> Promise<D.Object> {
         return startRequest(request, decoder: decoder)
     }
+    
+    /// Returns the pending `DataRequest` for the given `key` or nil if none.
+    public func dataRequest(forKey key: String) -> DataRequest? {
+        return dataRequests.object(forKey: key as NSString)
+    }
 
     // MARK: Internal
     
-    func startRequest<Req: Request>(_ request: Req) -> Promise<Void> {
-        let promise = Promise<Void>.pending()
+    func startRequest<R: Request>(_ request: R) -> Promise<DefaultDataResponse> {
+        let promise = Promise<DefaultDataResponse>.pending()
         do {
             let urlRequest = try request.createURLRequest(baseURL: baseURL, headers: headers)
             printRequest(urlRequest, error: nil)
             
-            sessionManager.request(urlRequest).validate().response {
-                self.processResponse($0, request: request, promise: promise)
+            let dataRequest = sessionManager.request(urlRequest).validate().response {
+                promise.fulfill($0)
+            }
+            
+            if let key = request.dataRequestKey {
+                dataRequests.setObject(dataRequest, forKey: key as NSString)
             }
         } catch {
             printRequest(nil, error: error)
@@ -153,19 +162,27 @@ open class Server {
         return promise
     }
     
+    func startRequest<Req: Request>(_ request: Req) -> Promise<Void> {
+        let promise = Promise<Void>.pending()
+        
+        startRequest(request).then {
+            self.processResponse($0, request: request, promise: promise)
+        }.catch {
+            promise.reject($0)
+        }
+        
+        return promise
+    }
+    
     func startRequest<R: Request, D: ResponseDecoder>(_ request: R, decoder: D) -> Promise<D.Object> {
         let promise = Promise<D.Object>.pending()
-        do {
-            let urlRequest = try request.createURLRequest(baseURL: baseURL, headers: headers)
-            printRequest(urlRequest, error: nil)
-            
-            sessionManager.request(urlRequest).validate().response {
-                self.processResponse($0, decoder: decoder, request: request, promise: promise)
-            }
-        } catch {
-            printRequest(nil, error: error)
-            promise.reject(error)
+        
+        startRequest(request).then {
+            self.processResponse($0, decoder: decoder, request: request, promise: promise)
+        }.catch {
+            promise.reject($0)
         }
+        
         return promise
     }
     
@@ -197,6 +214,8 @@ open class Server {
             }
         }
     }
+    
+    private lazy var dataRequests = NSMapTable<NSString, DataRequest>.strongToWeakObjects()
 
 }
 

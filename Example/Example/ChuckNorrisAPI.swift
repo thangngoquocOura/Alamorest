@@ -36,7 +36,7 @@ struct ChuckNorrisAPI {
     
     struct Joke: Decodable {
         let id: String
-        let iconUrl: URL
+        let icon_url: URL
         let value: String
         let url: URL
         let category: [String]?

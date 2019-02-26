@@ -30,10 +30,21 @@ open class Request {
     public let path: String
     public let method: HTTPMethod
     
+    /// HTTP headers for the request.
+    ///
+    /// These are merged with the server headers.
     public var headers = HTTPHeaders()
+    
+    /// HTTP parameters for the request.
     public var parameters = Parameters()
     
+    /// Specifies the timeout interval in seconds for the request.
     public var timeoutInterval: TimeInterval?
+    
+    /// Key that can be used when querying for the underlying `DataRequest` by using `Server.dataRequest(forKey:)` method.
+    ///
+    /// This is mostly useful for implementing the cancellation of pending requests.
+    public var dataRequestKey: String?
     
     public init(path: String, method: HTTPMethod) {
         self.path = path
