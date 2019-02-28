@@ -39,16 +39,13 @@ open class JSONRequestBase: Request {
 
 open class JSONRequest<Object: Encodable>: JSONRequestBase {
     
+    public let encoder = JSONEncoder()
     public let object: Object
-    
+
     public init(object: Object, path: String, method: HTTPMethod) {
         self.object = object
         
         super.init(path: path, method: method)
-    }
-    
-    open var encoder: JSONEncoder {
-        return JSONEncoder()
     }
     
     override public func createURLRequest(baseURL: URL, headers: HTTPHeaders) throws -> URLRequest {
@@ -61,11 +58,9 @@ open class JSONRequest<Object: Encodable>: JSONRequestBase {
 
 open class JSONResponseDecoder<T: Decodable>: ResponseDecoder {
     
-    public init() { }
+    public let decoder = JSONDecoder()
     
-    open var decoder: JSONDecoder {
-        return JSONDecoder()
-    }
+    public init() { }
     
     public func decode(from data: Data) throws -> T {
         return try decoder.decode(T.self, from: data)
