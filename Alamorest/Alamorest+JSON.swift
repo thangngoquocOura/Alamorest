@@ -26,6 +26,7 @@ import Foundation
 import Alamofire
 import Promises
 
+/// Base class for all JSON requests.
 open class JSONRequestBase: Request {
     
     public override init(path: String, method: HTTPMethod) {
@@ -94,12 +95,21 @@ public extension Server {
         return startRequest(request)
     }
     
+    /// Submits a JSON request to the server, decoding no response.
     ///
+    /// - Parameter object: Object to send that is encoded using the default `JSONEncoder`.
+    /// - Parameter path: Path of the request.
+    /// - Parameter method: HTTP method of the request.
+    /// - Returns: Promise that is fulfilled when the request is completed.
     public func json<R: Encodable>(object: R, path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(JSONRequest(object: object, path: path, method: method))
     }
     
+    /// Submits an empty JSON request to the server, decoding no response.
     ///
+    /// - Parameter path: Path of the request.
+    /// - Parameter method: HTTP method of the request.
+    /// - Returns: Promise that is fulfilled when the request is completed.
     public func json(path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(JSONRequestBase(path: path, method: method))
     }
