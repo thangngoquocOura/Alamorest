@@ -21,11 +21,11 @@ Provides out-of-the box support for JSON and (optionally) Protobuf requests.
 
 CocoaPods is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate Alamorest into your Xcode project using CocoaPods, specify it in your Podfile:
 
-`pod 'Alamorest', :git => 'git@github.com:anlaital/Alamorest.git'`
+`pod 'Alamorest'`
 
 To add support for Protobuf, include the following subspec in your Podfile:
 
-`pod 'Alamorest/Protobuf', :git => 'git@github.com:anlaital/Alamorest.git'`
+`pod 'Alamorest/Protobuf'`
 
 ## Usage
 
