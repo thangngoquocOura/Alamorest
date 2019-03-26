@@ -75,15 +75,15 @@ public extension Server {
     ///
     /// - Parameter request: Request to send.
     /// - Returns: Promise containing the decoded object on success.
-    public func json<R: Request, O: Decodable>(_ request: R) -> Promise<O> {
+    func json<R: Request, O: Decodable>(_ request: R) -> Promise<O> {
         return startRequest(request, decoder: JSONResponseDecoder<O>())
     }
     
-    public func json<R: Encodable, O: Decodable>(object: R, path: String, method: HTTPMethod) -> Promise<O> {
+    func json<R: Encodable, O: Decodable>(object: R, path: String, method: HTTPMethod) -> Promise<O> {
         return json(JSONRequest(object: object, path: path, method: method))
     }
     
-    public func json<O: Decodable>(path: String, method: HTTPMethod) -> Promise<O> {
+    func json<O: Decodable>(path: String, method: HTTPMethod) -> Promise<O> {
         return json(JSONRequestBase(path: path, method: method))
     }
     
@@ -91,7 +91,7 @@ public extension Server {
     ///
     /// - Parameter request: Request to send.
     /// - Returns: Promise that is fulfilled when the request is completed.
-    public func json<R: Request>(_ request: R) -> Promise<Void> {
+    func json<R: Request>(_ request: R) -> Promise<Void> {
         return startRequest(request)
     }
     
@@ -101,7 +101,7 @@ public extension Server {
     /// - Parameter path: Path of the request.
     /// - Parameter method: HTTP method of the request.
     /// - Returns: Promise that is fulfilled when the request is completed.
-    public func json<R: Encodable>(object: R, path: String, method: HTTPMethod) -> Promise<Void> {
+    func json<R: Encodable>(object: R, path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(JSONRequest(object: object, path: path, method: method))
     }
     
@@ -110,7 +110,7 @@ public extension Server {
     /// - Parameter path: Path of the request.
     /// - Parameter method: HTTP method of the request.
     /// - Returns: Promise that is fulfilled when the request is completed.
-    public func json(path: String, method: HTTPMethod) -> Promise<Void> {
+    func json(path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(JSONRequestBase(path: path, method: method))
     }
     

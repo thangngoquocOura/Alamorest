@@ -78,30 +78,30 @@ public extension Server {
     /// Submits a protobuf request to the server decoding the response using the default `ProtobufResponseDecoder`.
     ///
     /// - Parameter request: Request to submit.
-    public func protobuf<R: Request, O: SwiftProtobuf.Message>(_ request: R) -> Promise<O> {
+    func protobuf<R: Request, O: SwiftProtobuf.Message>(_ request: R) -> Promise<O> {
         return startRequest(request, decoder: ProtobufResponseDecoder<O>())
     }
 
-    public func protobuf<R: SwiftProtobuf.Message, O: SwiftProtobuf.Message>(object: R, path: String, method: HTTPMethod) -> Promise<O> {
+    func protobuf<R: SwiftProtobuf.Message, O: SwiftProtobuf.Message>(object: R, path: String, method: HTTPMethod) -> Promise<O> {
         return protobuf(ProtobufRequest(object: object, path: path, method: method))
     }
 
-    public func protobuf<O: SwiftProtobuf.Message>(path: String, method: HTTPMethod) -> Promise<O> {
+    func protobuf<O: SwiftProtobuf.Message>(path: String, method: HTTPMethod) -> Promise<O> {
         return protobuf(ProtobufRequestBase(path: path, method: method))
     }
 
     ///
-    public func protobuf<R: Request>(_ request: R) -> Promise<Void> {
+    func protobuf<R: Request>(_ request: R) -> Promise<Void> {
         return startRequest(request)
     }
     
     ///
-    public func protobuf<R: SwiftProtobuf.Message>(object: R, path: String, method: HTTPMethod) -> Promise<Void> {
+    func protobuf<R: SwiftProtobuf.Message>(object: R, path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(ProtobufRequest(object: object, path: path, method: method))
     }
 
     ///
-    public func protobuf(path: String, method: HTTPMethod) -> Promise<Void> {
+    func protobuf(path: String, method: HTTPMethod) -> Promise<Void> {
         return startRequest(ProtobufRequestBase(path: path, method: method))
     }
     
