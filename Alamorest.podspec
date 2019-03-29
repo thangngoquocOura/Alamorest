@@ -8,6 +8,7 @@ Pod::Spec.new do |spec|
   spec.source           = { :git => 'https://github.com/anlaital/Alamorest.git', :tag => 'v1.1.0' }
 
   spec.ios.deployment_target = '10.0'
+  spec.swift_version = '5.0'
 
   spec.source_files = 'Alamorest/*.swift'
   
