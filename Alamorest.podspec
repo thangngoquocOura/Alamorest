@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'Alamorest'
-  spec.version          = '1.1.0'
+  spec.version          = '1.1.1'
   spec.summary          = "Alamorest provides an easy way to interface with RESTful services using Alamofire and Promises."
   spec.homepage         = 'https://github.com/anlaital/Alamorest'
   spec.license          = 'MIT'
