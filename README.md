@@ -7,7 +7,7 @@ Provides out-of-the box support for JSON and (optionally) Protobuf requests.
 ## Requirements
 
 - iOS 10.0+
-- Swift 4.2+
+- Swift 5.0+
 
 ## Dependencies
 
