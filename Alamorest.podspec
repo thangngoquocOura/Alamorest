@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name             = 'Alamorest'
-  spec.version          = '1.1.1'
+  spec.version          = '1.2.0'
   spec.summary          = "Alamorest provides an easy way to interface with RESTful services using Alamofire and Promises."
   spec.homepage         = 'https://github.com/anlaital/Alamorest'
   spec.license          = 'MIT'
@@ -13,7 +13,7 @@ Pod::Spec.new do |spec|
   spec.source_files = 'Alamorest/*.swift'
   
   spec.dependency 'Alamofire', '~> 4.8.1'
-  spec.dependency 'PromisesSwift', '~> 1.2.6'
+  spec.dependency 'PromisesSwift', '~> 1.2.8'
 
   spec.default_subspec = 'Lite'
 
@@ -22,6 +22,6 @@ Pod::Spec.new do |spec|
   end
 
   spec.subspec 'Protobuf' do |protobuf|
-    protobuf.dependency 'SwiftProtobuf', '~> 1.3.1'
+    protobuf.dependency 'SwiftProtobuf', '~> 1.5.0'
   end
 end
