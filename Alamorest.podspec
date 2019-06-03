@@ -5,7 +5,7 @@ Pod::Spec.new do |spec|
   spec.homepage         = 'https://github.com/anlaital/Alamorest'
   spec.license          = 'MIT'
   spec.authors          = { 'Antti Laitala' => 'antti.o.laitala@gmail.com' }
-  spec.source           = { :git => 'https://github.com/anlaital/Alamorest.git', :tag => 'v1.1.1' }
+  spec.source           = { :git => 'https://github.com/anlaital/Alamorest.git', :tag => 'v1.2.0' }
 
   spec.ios.deployment_target = '10.0'
   spec.swift_version = '5.0'
