@@ -40,7 +40,12 @@ open class JSONRequestBase: Request {
 
 open class JSONRequest<Object: Encodable>: JSONRequestBase {
     
-    public let encoder = JSONEncoder()
+    public let encoder: JSONEncoder = {
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .iso8601
+        return encoder
+    }()
+
     public let object: Object
 
     public init(object: Object, path: String, method: HTTPMethod) {
@@ -59,7 +64,11 @@ open class JSONRequest<Object: Encodable>: JSONRequestBase {
 
 open class JSONResponseDecoder<T: Decodable>: ResponseDecoder {
     
-    public let decoder = JSONDecoder()
+    public let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        return decoder
+    }()
     
     public init() { }
     
