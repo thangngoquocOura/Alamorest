@@ -77,7 +77,7 @@ open class Server {
     ///
     /// - parameter response: Response from which to resolve the error from.
     /// - returns: Resolved `Error` or nil if no error occurred.
-    public func resolveError(from response: DefaultDataResponse) -> Error? {
+    open func resolveError(from response: DefaultDataResponse) -> Error? {
         guard let error = response.error else {
             return nil
         }
