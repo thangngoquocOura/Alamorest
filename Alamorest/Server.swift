@@ -29,10 +29,12 @@ import Promises
 /// Provides interface for communicating with server APIs.
 open class Server {
     
+    public typealias DefaultDataResponse = AFDataResponse<Data?>
+    
     public let baseURL: URL
     
     public var headers = HTTPHeaders()
-    public var sessionManager = SessionManager.default
+    public var sessionManager = Session.default
     
     public init(baseURL: URL) {
         self.baseURL = baseURL
@@ -81,8 +83,8 @@ open class Server {
         guard let error = response.error else {
             return nil
         }
-        
-        if let networkError = CFNetworkErrors(rawValue: Int32((error as NSError).code)) {
+
+        if let rawValue = (error.underlyingError as NSError?)?.code, let networkError = CFNetworkErrors(rawValue: Int32(rawValue)) {
             switch networkError {
             case .cfurlErrorCancelled:
                 return ServerError.cancelled
@@ -238,9 +240,9 @@ private func printRequest(_ request: URLRequest?, error: Error?) {
     }
 }
 
-private func printResponse(_ response: DefaultDataResponse, error: Error?) {
+private func printResponse(_ response: Server.DefaultDataResponse, error: Error?) {
     if let request = response.request, let method = request.httpMethod, let url = request.url, let code = response.response?.statusCode {
-        RestLogger.print("< [\(method): \(code)] \(url) (\(Int(response.timeline.requestDuration * 1000)) ms)", level: .debug)
+        RestLogger.print("< [\(method): \(code)] \(url) (\(Int((response.metrics?.taskInterval.duration ?? 0) * 1000)) ms)", level: .debug)
     }
     if let error = error {
         RestLogger.print("\n.error\n\(error)", level: .debug)

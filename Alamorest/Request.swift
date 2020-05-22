@@ -53,8 +53,12 @@ open class Request {
     
     public func createURLRequest(baseURL: URL, headers: HTTPHeaders) throws -> URLRequest {
         let url = baseURL.appendingPathComponent(path)
-        let mergedHeaders = self.headers.merging(headers) { current, _ in return current }
         
+        let headersDict = self.headers.dictionary.merging(headers.dictionary) {
+            current, _ in current
+        }
+        let mergedHeaders = HTTPHeaders(headersDict)
+                
         var request = try URLRequest(url: url, method: method, headers: mergedHeaders)
         
         if let timeoutInterval = timeoutInterval {

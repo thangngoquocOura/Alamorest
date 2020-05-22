@@ -23,6 +23,7 @@
 //
 
 import UIKit
+import Alamorest
 import Promises
 
 @UIApplicationMain
