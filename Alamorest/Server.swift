@@ -206,9 +206,9 @@ open class Server {
             promise.reject(error)
         } else {
             do {
+                printResponse(response, error: nil)
                 let data = response.data ?? Data()
                 let result = try decoder.decode(from: data)
-                printResponse(response, error: nil)
                 promise.fulfill(result)
             } catch {
                 printResponse(response, error: error)
