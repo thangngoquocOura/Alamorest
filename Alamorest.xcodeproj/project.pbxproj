@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,10 @@
 		73F9495F221BD992005CA572 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F9495E221BD992005CA572 /* Server.swift */; };
 		73F94961221BD99C005CA572 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F94960221BD99C005CA572 /* Request.swift */; };
 		73F94963221BD9A2005CA572 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F94962221BD9A2005CA572 /* Response.swift */; };
+		7CE3EA86263C1649009457BC /* Alamofire.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE3EA82263C1649009457BC /* Alamofire.xcframework */; };
+		7CE3EA88263C1649009457BC /* Promises.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE3EA83263C1649009457BC /* Promises.xcframework */; };
+		7CE3EA8A263C1649009457BC /* FBLPromises.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE3EA84263C1649009457BC /* FBLPromises.xcframework */; };
+		7CE3EA8C263C1649009457BC /* SwiftProtobuf.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7CE3EA85263C1649009457BC /* SwiftProtobuf.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +45,10 @@
 		73F9495E221BD992005CA572 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		73F94960221BD99C005CA572 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		73F94962221BD9A2005CA572 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		7CE3EA82263C1649009457BC /* Alamofire.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Alamofire.xcframework; path = Carthage/Build/Alamofire.xcframework; sourceTree = "<group>"; };
+		7CE3EA83263C1649009457BC /* Promises.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Promises.xcframework; path = Carthage/Build/Promises.xcframework; sourceTree = "<group>"; };
+		7CE3EA84263C1649009457BC /* FBLPromises.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = FBLPromises.xcframework; path = Carthage/Build/FBLPromises.xcframework; sourceTree = "<group>"; };
+		7CE3EA85263C1649009457BC /* SwiftProtobuf.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SwiftProtobuf.xcframework; path = Carthage/Build/SwiftProtobuf.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE3EA86263C1649009457BC /* Alamofire.xcframework in Frameworks */,
+				7CE3EA88263C1649009457BC /* Promises.xcframework in Frameworks */,
+				7CE3EA8C263C1649009457BC /* SwiftProtobuf.xcframework in Frameworks */,
+				7CE3EA8A263C1649009457BC /* FBLPromises.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +80,7 @@
 				73F94946221BD976005CA572 /* Alamorest */,
 				73F94951221BD976005CA572 /* AlamorestTests */,
 				73F94945221BD976005CA572 /* Products */,
+				7CE3EA81263C1649009457BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +115,17 @@
 				73F94954221BD976005CA572 /* Info.plist */,
 			);
 			path = AlamorestTests;
+			sourceTree = "<group>";
+		};
+		7CE3EA81263C1649009457BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CE3EA82263C1649009457BC /* Alamofire.xcframework */,
+				7CE3EA84263C1649009457BC /* FBLPromises.xcframework */,
+				7CE3EA83263C1649009457BC /* Promises.xcframework */,
+				7CE3EA85263C1649009457BC /* SwiftProtobuf.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
